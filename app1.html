@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Weather</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+      <style>
+        body {
+            background-image: url('http://www.technocrazed.com/wp-content/uploads/2015/12/Landscape-wallpaper-35.jpg')
+          }
+          .heading {
+              
+               color: #ffffff;
+              font-size: 30px;
+          }
+          ul {
+  list-style-type: none;
+}
+        
+    </style>
+<body>
+<div >
+   <div class="text-center heading">
+  <h1>Weather</h1> 
+  <p>This is a Demo page for weather using OpenWeather API</p> 
+        <form class="form-inline">
+    <div class="input-group">
+      <input type="text" class="form-control" size="50" placeholder="Choose a City" required id="city">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-primary" id="search" >Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+  
+    <div class="text-center heading col-lg-12">
+        
+        <ul>
+            <li id="name"></li>
+            <li><img id="Image"  style="width:304px" ></li>
+              <li id="temp"></li>
+              <li id="humi"></li>
+        </ul>
+    </div>
+    </div>
+</body>
+    <script>
+    
+        
+  $('document').ready(function(){
+       
+       
+});
+   
+$( "#search" ).click(function() {
+    var city = document.getElementById("city").value;
+   
+     
+    
+      $.getJSON('http://api.openweathermap.org/data/2.5/weather?q='+city+'&APPID=5b2ce6af88dcfd168c76a975306c9acb', function(data) {
+          if(data==null)
+              {
+                  alert("pato");
+              }
+          else{
+              
+          
+    console.log(data);
+    var name= data.name;
+    var temp=data.main.temp;
+     var humi=data.main.humidity;
+    
+    
+    document.getElementById('name').innerHTML=name;
+    document.getElementById('temp').innerHTML=temp;
+    document.getElementById('humi').innerHTML=humi;
+          
+          if(city=="London"){
+               document.getElementById('Image').src="http://icon-park.com/imagefiles/simple_weather_icons_rain.png";
+          }
+          else{
+                document.getElementById('Image').src="http://icon-park.com/imagefiles/simple_weather_icons_partly_cloudy.png";
+          }
+          
+         
+         
+           /*document.getElementById("img").removeChild(x);
+         var x = document.createElement("IMG");
+    x.setAttribute("src", "http://icon-park.com/imagefiles/simple_weather_icons_rain.png");
+    x.setAttribute("width", "304");
+    x.setAttribute("height", "228");
+    document.getElementById("img").appendChild(x);*/
+         
+          
+          
+          }
+          
+         });
+      
+  
+});
+
+       
+    </script>
+  
+</html>
